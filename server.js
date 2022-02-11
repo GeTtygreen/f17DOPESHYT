@@ -72,15 +72,16 @@ app.post('/api/duel', (req, res) => {
 
         // comparing the total health to determine a winner
 
-        rollbar.log("CALCULATING A W/L STATEMENT")
         if (compHealthAfterAttack > playerHealthAfterAttack) {
             playerRecord.losses++
             res.status(200).send('You lost!')
+            rollbar.log("CALCULATING A W/L STATEMENT")
         } else {
             playerRecord.losses++
             res.status(200).send('You won!')
+            rollbar.log("CALCULATING A W/L STATEMENT")
         }
-
+        
     } catch (error) {
         console.log('ERROR DUELING', error)
         res.sendStatus(400)
