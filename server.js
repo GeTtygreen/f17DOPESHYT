@@ -71,6 +71,8 @@ app.post('/api/duel', (req, res) => {
         let playerHealthAfterAttack = playerHealth - compAttack
 
         // comparing the total health to determine a winner
+
+        rollbar.log("CALCULATING A W/L STATEMENT")
         if (compHealthAfterAttack > playerHealthAfterAttack) {
             playerRecord.losses++
             res.status(200).send('You lost!')
@@ -78,6 +80,7 @@ app.post('/api/duel', (req, res) => {
             playerRecord.losses++
             res.status(200).send('You won!')
         }
+
     } catch (error) {
         console.log('ERROR DUELING', error)
         res.sendStatus(400)
@@ -87,6 +90,7 @@ app.post('/api/duel', (req, res) => {
 app.get('/api/player', (req, res) => {
     try {
         res.status(200).send(playerRecord)
+        rollbar.log('EA SPORTS SOMEONES IN THE GAME ')
     } catch (error) {
         console.log('ERROR GETTING PLAYER STATS', error)
         res.sendStatus(400)
