@@ -74,12 +74,12 @@ app.post('/api/duel', (req, res) => {
 
         if (compHealthAfterAttack > playerHealthAfterAttack) {
             playerRecord.losses++
-            res.status(200).send('You lost!')
             rollbar.log("CALCULATING A W/L STATEMENT")
+            res.status(200).send('You lost!')
         } else {
             playerRecord.losses++
-            res.status(200).send('You won!')
             rollbar.log("CALCULATING A W/L STATEMENT")
+            res.status(200).send('You won!')
         }
         
     } catch (error) {
@@ -90,8 +90,8 @@ app.post('/api/duel', (req, res) => {
 
 app.get('/api/player', (req, res) => {
     try {
-        res.status(200).send(playerRecord)
         rollbar.log('EA SPORTS SOMEONES IN THE GAME ')
+        res.status(200).send(playerRecord)
     } catch (error) {
         console.log('ERROR GETTING PLAYER STATS', error)
         res.sendStatus(400)
